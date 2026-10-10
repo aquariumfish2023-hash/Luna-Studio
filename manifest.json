@@ -1,0 +1,13 @@
+{
+  "name": "Luna Studio - Editor creativo",
+  "short_name": "Luna Studio",
+  "description": "Editor gratuito de fotos con texto, emojis, stickers y filtros.",
+  "lang": "es-CO",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fbf9ff",
+  "theme_color": "#6c4df6",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}

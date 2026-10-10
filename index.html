@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#6c4df6">
+  <meta name="description" content="Editor creativo de fotos gratuito, privado y fácil de usar.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <title>Luna Studio</title>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">✦</div>
+    <div><h1>Luna Studio</h1><p>Tu creatividad, sin límites</p></div>
+    <button id="installBtn" class="icon-btn" hidden aria-label="Instalar app">⬇</button>
+  </header>
+
+  <main>
+    <section class="welcome" id="welcome">
+      <div class="sparkle">✧ ✦ ✧</div>
+      <h2>Haz que tus fotos<br><span>cuenten historias.</span></h2>
+      <p>Agrega frases, emojis, stickers y filtros. Todo queda en tu dispositivo.</p>
+      <label class="primary-btn upload-label">＋ Elegir una foto
+        <input id="imageInput" type="file" accept="image/*" hidden>
+      </label>
+      <div class="quick-chips"><span>💖 Stickers</span><span>✍️ Texto</span><span>🌈 Filtros</span></div>
+    </section>
+
+    <section class="editor" id="editor" hidden>
+      <div class="canvas-wrap" id="canvasWrap">
+        <canvas id="canvas" width="900" height="1100" aria-label="Vista previa de la foto"></canvas>
+        <div class="empty-canvas" id="emptyCanvas">
+          <div>🌷</div><strong>Tu foto aparecerá aquí</strong><span>Elige una imagen para empezar</span>
+        </div>
+      </div>
+      <div class="canvas-actions">
+        <button class="small-btn" id="undoBtn">↶ Deshacer</button>
+        <button class="small-btn" id="resetBtn">⟲ Reiniciar</button>
+        <button class="primary-btn save-btn" id="saveBtn">Guardar foto ↓</button>
+      </div>
+
+      <nav class="tool-tabs" aria-label="Herramientas de edición">
+        <button class="tool-tab active" data-panel="textPanel"><span>Ｔ</span>Texto</button>
+        <button class="tool-tab" data-panel="stickerPanel"><span>😍</span>Stickers</button>
+        <button class="tool-tab" data-panel="filterPanel"><span>🌈</span>Filtros</button>
+        <button class="tool-tab" data-panel="templatePanel"><span>✨</span>Estilos</button>
+      </nav>
+
+      <section class="tool-panel" id="textPanel">
+        <label for="textInput">Tu frase</label>
+        <textarea id="textInput" rows="2" placeholder="Escribe algo bonito..."></textarea>
+        <div class="control-row">
+          <label>Color <input id="textColor" type="color" value="#ffffff"></label>
+          <label>Tamaño <input id="textSize" type="range" min="22" max="100" value="54"></label>
+        </div>
+        <div class="control-row">
+          <label>Estilo
+            <select id="textStyle"><option value="bold">Negrita</option><option value="normal">Normal</option><option value="italic">Cursiva</option></select>
+          </label>
+          <label>Contorno
+            <select id="textOutline"><option value="dark">Oscuro</option><option value="light">Claro</option><option value="none">Sin contorno</option></select>
+          </label>
+        </div>
+        <button id="addTextBtn" class="primary-btn full-btn">＋ Agregar texto a la foto</button>
+      </section>
+
+      <section class="tool-panel" id="stickerPanel" hidden>
+        <p class="panel-hint">Toca un sticker para añadirlo. Después puedes arrastrarlo sobre la foto.</p>
+        <div class="sticker-grid" id="stickerGrid"></div>
+        <label class="secondary-btn upload-label">＋ Añadir sticker desde el celular
+          <input id="stickerInput" type="file" accept="image/*" hidden>
+        </label>
+      </section>
+
+      <section class="tool-panel" id="filterPanel" hidden>
+        <p class="panel-hint">Prueba un estilo y elige tu favorito.</p>
+        <div class="filter-grid">
+          <button class="filter-card" data-filter="none"><span>🌼</span>Original</button>
+          <button class="filter-card" data-filter="warm"><span>🌅</span>Cálido</button>
+          <button class="filter-card" data-filter="mono"><span>🖤</span>Blanco y negro</button>
+          <button class="filter-card" data-filter="vivid"><span>🌈</span>Vibrante</button>
+          <button class="filter-card" data-filter="soft"><span>☁️</span>Suave</button>
+          <button class="filter-card" data-filter="dream"><span>💜</span>Soñado</button>
+        </div>
+      </section>
+
+      <section class="tool-panel" id="templatePanel" hidden>
+        <p class="panel-hint">Dale un acabado especial a tu foto.</p>
+        <div class="template-grid">
+          <button class="template-card" data-template="none"><span class="template-preview plain">Aa</span>Sin marco</button>
+          <button class="template-card" data-template="polaroid"><span class="template-preview polaroid">♡</span>Polaroid</button>
+          <button class="template-card" data-template="love"><span class="template-preview love">♥</span>Romántico</button>
+          <button class="template-card" data-template="birthday"><span class="template-preview birthday">🎂</span>Cumpleaños</button>
+          <button class="template-card" data-template="nature"><span class="template-preview nature">🌿</span>Naturaleza</button>
+          <button class="template-card" data-template="sparkle"><span class="template-preview sparkle">✦</span>Brillante</button>
+        </div>
+      </section>
+      <p class="privacy-note">🔒 Tus fotos se editan en este dispositivo. No se suben a un servidor.</p>
+    </section>
+  </main>
+  <footer>Hecho con cariño ✨ <span>Una herramienta gratuita para crear</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
